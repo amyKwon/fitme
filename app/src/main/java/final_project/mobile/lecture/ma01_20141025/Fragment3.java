@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import final_project.mobile.lecture.ma01_20141025.activity.DesActivity;
+
 public class Fragment3 extends Fragment {
 
     @Nullable

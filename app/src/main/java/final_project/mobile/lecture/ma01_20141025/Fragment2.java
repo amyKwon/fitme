@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import final_project.mobile.lecture.ma01_20141025.activity.DesActivity;
+
 public class Fragment2 extends Fragment {
 
     @Nullable

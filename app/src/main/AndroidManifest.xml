@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,9 +16,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DesActivity"
+            android:name=".activity.DesActivity"
             android:label="DestinationActivity" />
-        <activity android:name=".InputInform"></activity>
+        <activity android:name=".activity.InputInformActivity"></activity>
     </application>
 
 </manifest>

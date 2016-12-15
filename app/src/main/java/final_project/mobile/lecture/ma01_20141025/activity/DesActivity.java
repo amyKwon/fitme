@@ -1,4 +1,4 @@
-package final_project.mobile.lecture.ma01_20141025;
+package final_project.mobile.lecture.ma01_20141025.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import final_project.mobile.lecture.ma01_20141025.R;
 
 public class DesActivity extends AppCompatActivity{
 

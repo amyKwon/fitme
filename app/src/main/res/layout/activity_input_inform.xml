@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="final_project.mobile.lecture.ma01_20141025.InputInform">
+    tools:context=".activity.InputInformActivity">
 
     <Button
         android:layout_width="wrap_content"

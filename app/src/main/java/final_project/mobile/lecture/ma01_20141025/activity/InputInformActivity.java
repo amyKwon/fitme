@@ -1,11 +1,14 @@
-package final_project.mobile.lecture.ma01_20141025;
+package final_project.mobile.lecture.ma01_20141025.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class InputInform extends AppCompatActivity {
+import final_project.mobile.lecture.ma01_20141025.R;
+import final_project.mobile.lecture.ma01_20141025.activity.MainActivity;
+
+public class InputInformActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
