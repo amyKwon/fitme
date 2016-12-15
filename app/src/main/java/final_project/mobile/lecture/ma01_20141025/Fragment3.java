@@ -1,15 +1,19 @@
 package final_project.mobile.lecture.ma01_20141025;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,10 +80,35 @@ public class Fragment3 extends Fragment {
                 googleMap.setMyLocationEnabled(true);
 
                 Location location = UtilLocation.getLastKnownLoaction(true,getContext());
-                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                if(location != null){
 
-                CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(12).build();
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                    LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+                    CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(12).build();
+                    googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                }
+                else{
+                    final AlertDialog.Builder builder =  new AlertDialog.Builder(getActivity());
+                    final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
+                    final String message = "Do you want open GPS setting?";
+
+                    builder.setMessage(message)
+                            .setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface d, int id) {
+                                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                                            d.dismiss();
+                                        }
+                                    })
+                            .setNegativeButton("Cancel",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface d, int id) {
+                                            d.cancel();
+                                        }
+                                    });
+                    builder.create().show();
+
+                }
 
 //                googleMap.setContentDescription("Google Map with polylines.");
 
