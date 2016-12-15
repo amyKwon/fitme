@@ -15,8 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DesActivity"
-            android:label="DestinationActivity"/>
+        <activity
+            android:name=".DesActivity"
+            android:label="DestinationActivity" />
+        <activity android:name=".InputInform"></activity>
     </application>
 
 </manifest>
