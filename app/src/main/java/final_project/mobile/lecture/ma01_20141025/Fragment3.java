@@ -1,9 +1,11 @@
 package final_project.mobile.lecture.ma01_20141025;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -14,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.gms.location.LocationListener;
+import android.location.LocationListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -28,12 +30,14 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 
-public class Fragment3 extends Fragment implements LocationListener {
+public class Fragment3 extends Fragment {
 
     MapView mMapView;
     private GoogleMap googleMap;
 
     private ArrayList<LatLng> points; //added
+
+    LocationManager locationManager;
 
     @Nullable
     @Override
@@ -43,7 +47,7 @@ public class Fragment3 extends Fragment implements LocationListener {
 
         mMapView = (MapView) rootView.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
-
+        points = new ArrayList<LatLng>();
         mMapView.onResume(); // needed to get the map to display immediately
 
         try {
@@ -55,8 +59,9 @@ public class Fragment3 extends Fragment implements LocationListener {
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap mMap) {
-                googleMap = mMap;
-
+                if(googleMap == null){
+                    googleMap = mMap;
+                }
                 // For showing a move to my location button
                 if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
@@ -70,7 +75,46 @@ public class Fragment3 extends Fragment implements LocationListener {
                 }
                 googleMap.setMyLocationEnabled(true);
 
+                Location location = UtilLocation.getLastKnownLoaction(true,getContext());
+                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+                CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(12).build();
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
 //                googleMap.setContentDescription("Google Map with polylines.");
+
+
+                locationManager = (LocationManager)getContext().getSystemService(Context.LOCATION_SERVICE);
+                LocationListener locationListener = new LocationListener() {
+                    @Override
+                    public void onLocationChanged(Location location) {
+                        //위치 변경될때 실행되며 폴리라인을 그려주고 지도에서 위치를 변경시켜줌.
+                        Toast.makeText(getActivity().getApplicationContext(),"sssCHANGEDsss", Toast.LENGTH_LONG).show();  //this never appear
+                        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude()); //you already have this
+                        points.add(latLng); //added
+                        CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(18).build();
+                        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+                        Toast.makeText(getActivity(),"change",Toast.LENGTH_SHORT);
+                        redrawLine(); //added
+                    }
+
+                    @Override
+                    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+                    }
+
+                    @Override
+                    public void onProviderEnabled(String s) {
+
+                    }
+
+                    @Override
+                    public void onProviderDisabled(String s) {
+
+                    }
+                };
+
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 1.0f, locationListener);
 
             }
         });
@@ -82,15 +126,6 @@ public class Fragment3 extends Fragment implements LocationListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button button = (Button) view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), DesActivity.class);
-                intent.putExtra("string", "Go to other Activity from a ViewPager Fragment");
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -117,16 +152,7 @@ public class Fragment3 extends Fragment implements LocationListener {
         mMapView.onLowMemory();
     }
 
-    @Override
-    public void onLocationChanged(Location location) {
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude()); //you already have this
-        points.add(latLng); //added
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(latLng).zoom(12).build();
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        Toast.makeText(getActivity(),"change",Toast.LENGTH_SHORT);
-        redrawLine(); //added
-    }
-
+//    지도에 폴리라인 그려줌
     public void redrawLine(){
         googleMap.clear();  //clears all Markers and Polylines
 
