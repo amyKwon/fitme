@@ -36,22 +36,26 @@ public class Fragment1 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Log.i("ohodfd","SSF");
+        // specify an adapter (see also next example)
+        myDataset = new ArrayList<>();
+
         mRecyclerView = (RecyclerView)view.findViewById(R.id.my_recycler_view);
         mLayoutManager = new LinearLayoutManager(getContext());
+        mAdapter = new CardAdapter(myDataset, getContext());
         // use this setting to imprve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
 
         //mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
-        myDataset = new ArrayList<>();
+
         //cardview item 추가
         myDataset.add(new MyData(R.mipmap.ic_launcher,"복부 집중 운동", "1시간 15분",3));
         myDataset.add(new MyData(R.mipmap.ic_launcher,"복부 근력 운동", "45분",2));
         myDataset.add(new MyData(R.mipmap.ic_launcher,"옆구리 집중 운동", "1시간 3분",1));
 
-        mAdapter = new CardAdapter(myDataset, getContext());
+
+
         mRecyclerView.setAdapter(mAdapter);
 
 

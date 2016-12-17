@@ -23,9 +23,8 @@ public class CardAdapter extends RecyclerView.Adapter<MyViewHolder>{
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-
     Context c;
-
+    MyViewHolder vh;
     // Provide a suitable constructor (depends on the kind of dataset)
     public CardAdapter(ArrayList<MyData> myDataset, Context context) {
         c = context;
@@ -33,12 +32,12 @@ public class CardAdapter extends RecyclerView.Adapter<MyViewHolder>{
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public  MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.my_view, parent, false);
         // set the view's size, margins, paddings and layout parameters
-        MyViewHolder vh = new MyViewHolder(v);
+        vh = new MyViewHolder(v);
         Log.i("ohdoking","!23312");
         return vh;
 
@@ -52,7 +51,9 @@ public class CardAdapter extends RecyclerView.Adapter<MyViewHolder>{
         holder.iv_exerImg.setOnClickListener(listener);
         holder.tv_exerName.setText(mDataset.get(position).getCourse_name());
         holder.tv_reqTime.setText((CharSequence) mDataset.get(position).getReqTime());
-        holder.tv_stateCnt.setText(mDataset.get(position).getCount());
+
+        //holder.tv_stateCnt.setText(mDataset.get(position).getCount());
+        Log.i("ohdoking","!??");
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             //cardview 전체를 아우르는 뷰에 onclicklistener 걸기, RecyclerView에는 listview의 onItemClickListener가 존재하지 않음.
             @Override
@@ -76,6 +77,6 @@ public class CardAdapter extends RecyclerView.Adapter<MyViewHolder>{
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return 0;
+        return mDataset.size();
     }
 }
