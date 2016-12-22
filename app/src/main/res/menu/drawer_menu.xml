@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/fr1"
-        android:icon="@android:drawable/ic_menu_camera"
-        android:title="Fragment 1" />
+        android:icon="@android:drawable/ic_menu_set_as"
+        android:title="신체 정보 변경" />
 
     <item
         android:id="@+id/fr2"
-        android:icon="@android:drawable/ic_menu_gallery"
-        android:title="Fragment 2" />
+        android:icon="@android:drawable/ic_menu_set_as"
+        android:title="완료한 운동" />
 
     <item
         android:id="@+id/fr3"
         android:icon="@android:drawable/ic_menu_set_as"
-        android:title="Fragment 3" />
+        android:title="운동량 통" />
 
     <item
         android:id="@+id/go"
-        android:icon="@android:drawable/ic_menu_call"
-        android:title="Go to Other Activity" />
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="환경 설정" />
 
     <item
         android:id="@+id/close"

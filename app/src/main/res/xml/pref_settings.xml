@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <PreferenceCategory
+        android:key="keycateappversion"
+        android:title="앱버전" >
+        <Preference
+            android:key="appversion"
+            />
+    </PreferenceCategory>
+    <!--<PreferenceCategory-->
+    <!--android:key="keycateappversion"-->
+    <!--android:title="앱 설정" >-->
+    <!--<ListPreference-->
+    <!--android:defaultValue="0"-->
+    <!--android:entries="@array/setSensitive"-->
+    <!--android:entryValues="@array/sensitive_values"-->
+    <!--android:key="set_sensitive"-->
+    <!--android:negativeButtonText="@null"-->
+    <!--android:positiveButtonText="@null"-->
+    <!--android:title="감도 조절" />-->
+    <!--</PreferenceCategory>-->
+
+    <PreferenceCategory android:title="알림 설정" >
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="set_sound"
+            android:summary="알림상태를 설정합니다"
+            android:switchTextOff="OFF"
+            android:switchTextOn="ON"
+            android:title="알림 허용" />
+
+
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="어플 정보" >
+        <Preference
+            android:summary="개발자 정보를 확인합니다"
+            android:title="개발자 정보" >
+            <intent
+                android:targetClass="com.yapp.dev2016.walkey.DeveloperInformActivity"
+                android:targetPackage="com.yapp.dev2016.walkey" />
+        </Preference>
+        <Preference
+            android:summary="개발자에게 메일을 보냅니다"
+            android:title="메일 보내기" >
+            <intent
+                android:action="android.intent.action.SENDTO"
+                android:data="mailto:7819887@naver.com" />
+        </Preference>
+    </PreferenceCategory>
+    <!--<PreferenceCategory android:title="자주하는 질문">-->
+    <!--<Preference-->
+    <!--android:summary="워킹온아일랜드에 관한 질문"-->
+    <!--android:title="질문보기" >-->
+    <!--<intent-->
+    <!--android:targetClass="com.yapp.dev2016.walkey.QuestionActivity"-->
+    <!--android:targetPackage="com.yapp.dev2016.walkey" />-->
+    <!--</Preference>-->
+    <!--</PreferenceCategory>-->
+
+</PreferenceScreen>

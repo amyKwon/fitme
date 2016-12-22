@@ -45,7 +45,7 @@ public class CardAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Log.i("ohdoking","!!");
+
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.iv_exerImg.setOnClickListener(listener);

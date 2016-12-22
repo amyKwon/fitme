@@ -2,6 +2,7 @@
     <string name="app_name">fitme</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="action_settings">Settings</string>
 
     <string-array name="my_items">
         <item>Dummy Item 1</item>

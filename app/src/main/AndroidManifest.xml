@@ -27,12 +27,20 @@
         <activity
             android:name=".activity.DesActivity"
             android:label="DestinationActivity" />
-
-        <activity android:name=".activity.InputInformActivity"></activity>
+        <activity android:name=".activity.InputInformActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />
+
+        <activity android:name=".activity.BodyInfoActivity" />
+        <activity android:name=".activity.FitnessCenterActivity" />
+        <activity android:name=".activity.CourseDetailActivity" />
+        <activity android:name=".activity.FinishCourseActivity" />
+        <activity android:name=".activity.SplashActivity" />
+        <activity android:name=".activity.StatisticsActivity" />
+        <activity android:name=".activity.PrefActivity" />
+        <activity android:name=".activity.SettingsActivity"></activity>
     </application>
 
 </manifest>

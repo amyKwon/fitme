@@ -84,15 +84,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.fr1) {
-            viewPager.setCurrentItem(0);
+            Intent intent1 = new Intent(this,InputInformActivity.class);
+            intent1.putExtra("string", "Go to other Activity by NavigationView item cliked!");
+            //현재 사용자 정보 담아 보내기
+            startActivity(intent1);
         } else if (id == R.id.fr2) {
-            viewPager.setCurrentItem(1);
+            Intent intent2 = new Intent(this, FinishCourseActivity.class);
+            intent2.putExtra("string", "Go to other Activity by NavigationView item cliked!");
+            startActivity(intent2);
         } else if (id == R.id.fr3) {
-            viewPager.setCurrentItem(2);
+            Intent intent3 = new Intent(this, StatisticsActivity.class);
+            intent3.putExtra("string", "Go to other Activity by NavigationView item cliked!");
+            startActivity(intent3);
         } else if (id == R.id.go) {
-            Intent intent = new Intent(this, DesActivity.class);
-            intent.putExtra("string", "Go to other Activity by NavigationView item cliked!");
-            startActivity(intent);
+            Intent intent1 = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent1);
         } else if (id == R.id.close) {
             finish();
         }
