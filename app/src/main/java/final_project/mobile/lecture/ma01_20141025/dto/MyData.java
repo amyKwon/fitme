@@ -1,9 +1,19 @@
-package final_project.mobile.lecture.ma01_20141025.db;
+package final_project.mobile.lecture.ma01_20141025.dto;
 
 /**
  * Created by KwonYeJin on 2016. 12. 15..
  */
 public class MyData {
+
+    private int _id;
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
 
     private int img;
     private String course_name;

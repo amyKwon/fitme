@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import final_project.mobile.lecture.ma01_20141025.MyViewHolder;
 import final_project.mobile.lecture.ma01_20141025.R;
-import final_project.mobile.lecture.ma01_20141025.db.MyData;
+import final_project.mobile.lecture.ma01_20141025.dto.MyData;
 
 /**
  * Created by KwonYeJin on 2016. 12. 15..
@@ -35,7 +35,7 @@ public class CardAdapter extends RecyclerView.Adapter<MyViewHolder>{
     public  MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.my_view, parent, false);
+                .inflate(R.layout.rmy_view, parent, false);
         // set the view's size, margins, paddings and layout parameters
         vh = new MyViewHolder(v);
         Log.i("ohdoking","!23312");

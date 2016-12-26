@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import final_project.mobile.lecture.ma01_20141025.adapter.CardAdapter;
-import final_project.mobile.lecture.ma01_20141025.db.MyData;
+import final_project.mobile.lecture.ma01_20141025.dto.MyData;
 
 public class Fragment1 extends Fragment {
 
