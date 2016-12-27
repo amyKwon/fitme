@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">fitme</string>
+    <string name="app_name">Fitme</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="action_settings">Settings</string>
+    <string name="apiurl1">https://openapi.naver.com/v1/search/local.xml?display=10&amp;sort=random&amp;start=1&amp;query=</string>
+    <string name="apiurl2">https://openapi.naver.com/v1/search/blog.xml?display=10&amp;sort=sim&amp;start=1&amp;query=</string>
+    <string name="clientId"> fY71Eg_Yw5IbOq5way4E </string>
+    <string name="clientSecret">bIzPsO9eQX</string>
 
     <string-array name="my_items">
         <item>Dummy Item 1</item>

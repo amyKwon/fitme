@@ -38,7 +38,7 @@ public class CardAdapter extends RecyclerView.Adapter<MyViewHolder>{
                 .inflate(R.layout.rmy_view, parent, false);
         // set the view's size, margins, paddings and layout parameters
         vh = new MyViewHolder(v);
-        Log.i("ohdoking","!23312");
+        Log.i("test0","!23312");
         return vh;
 
     }
@@ -53,12 +53,12 @@ public class CardAdapter extends RecyclerView.Adapter<MyViewHolder>{
         holder.tv_reqTime.setText((CharSequence) mDataset.get(position).getReqTime());
 
         //holder.tv_stateCnt.setText(mDataset.get(position).getCount());
-        Log.i("ohdoking","!??");
+        Log.i("test1","!??");
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             //cardview 전체를 아우르는 뷰에 onclicklistener 걸기, RecyclerView에는 listview의 onItemClickListener가 존재하지 않음.
             @Override
             public void onClick(View v) {
-                //상세페이지
+                Log.i("test2","!??");
             }
         });
     }
@@ -68,7 +68,6 @@ public class CardAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
             switch (v.getId()) {
                 case R.id.iv_exerImg:
-                    //상세 페이지로 intent
                     break;
             }
         }

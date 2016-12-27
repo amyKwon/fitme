@@ -13,37 +13,31 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
-
-        </activity>
-        <activity
-            android:name=".activity.DesActivity"
-            android:label="DestinationActivity" />
-        <activity android:name=".activity.InputInformActivity" />
+        <activity android:name=".activity.MainActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_map_key" />
 
         <activity android:name=".activity.BodyInfoActivity" />
-        <activity android:name=".activity.FitnessCenterActivity" />
         <activity android:name=".activity.CourseDetailActivity" />
         <activity android:name=".activity.FinishCourseActivity" />
-        <activity android:name=".activity.SplashActivity" />
-        <activity android:name=".activity.StatisticsActivity" />
-        <activity android:name=".activity.PrefActivity" />
-        <activity android:name=".activity.SettingsActivity" />
-        <activity android:name=".activity.ShakeActivity">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.StatisticsActivity" />
+        <activity android:name=".activity.PrefActivity" />
+        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.ShakeActivity"></activity>
+        <activity android:name=".activity.ModifyInfoActivity"></activity>
     </application>
 
 </manifest>

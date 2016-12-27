@@ -35,7 +35,8 @@
                     android:id="@+id/iv_exerImg"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:background="#ddff22" />
+                    android:src="@drawable/a"
+                     />
 
 
             <LinearLayout

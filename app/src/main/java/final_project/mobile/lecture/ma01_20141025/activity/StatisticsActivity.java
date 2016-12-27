@@ -1,15 +1,12 @@
 package final_project.mobile.lecture.ma01_20141025.activity;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.util.Log;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -120,7 +117,8 @@ public class StatisticsActivity extends AppCompatActivity implements OnChartValu
         // 데이터 넣는곳
         // PieEntry에 (float(값), String(값문구)) 로 넣으면됨!
         for (int i = 0; i < count ; i++) {
-            entries.add(new PieEntry((float) ((Math.random() * mult) + mult / 5), "a"+i));
+            entries.add(new PieEntry((float) 41.0, "복부 운동"));
+
         }
 
         // 범레 타이틀 넣는 곳

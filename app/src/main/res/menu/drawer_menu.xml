@@ -9,11 +9,10 @@
         android:id="@+id/fr2"
         android:icon="@android:drawable/ic_menu_set_as"
         android:title="완료한 운동" />
-
     <item
         android:id="@+id/fr3"
         android:icon="@android:drawable/ic_menu_set_as"
-        android:title="운동량 통" />
+        android:title="운동량 통계" />
 
     <item
         android:id="@+id/go"

@@ -1,15 +1,19 @@
 package final_project.mobile.lecture.ma01_20141025.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import final_project.mobile.lecture.ma01_20141025.R;
@@ -20,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ViewPager viewPager;
     private DrawerLayout drawer;
     private TabLayout tabLayout;
-    private String[] pageTitle = {"Fragment 1", "Fragment 2", "Fragment 3"};
+    private String[] pageTitle = {"Recommend ", "Health Center", "Record "};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,17 +88,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.fr1) {
-            Intent intent1 = new Intent(this,InputInformActivity.class);
-            intent1.putExtra("string", "Go to other Activity by NavigationView item cliked!");
+            Intent intent1 = new Intent(this,ModifyInfoActivity.class);
+//            intent1.putExtra("string", "Go to other Activity by NavigationView item cliked!");
             //현재 사용자 정보 담아 보내기
             startActivity(intent1);
-        } else if (id == R.id.fr2) {
-            Intent intent2 = new Intent(this, FinishCourseActivity.class);
-            intent2.putExtra("string", "Go to other Activity by NavigationView item cliked!");
-            startActivity(intent2);
-        } else if (id == R.id.fr3) {
+        }
+         else if (id == R.id.fr3) {
             Intent intent3 = new Intent(this, StatisticsActivity.class);
-            intent3.putExtra("string", "Go to other Activity by NavigationView item cliked!");
+//            intent3.putExtra("string", "Go to other Activity by NavigationView item cliked!");
             startActivity(intent3);
         } else if (id == R.id.go) {
             Intent intent1 = new Intent(MainActivity.this, SettingsActivity.class);
@@ -115,5 +116,77 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
+    }
+
+        //Back 버튼을 눌렀을 경우 종료 확인 대화상자 출력 후 종료 확인
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK :
+
+                AlertDialog.Builder alt_bld = new AlertDialog.Builder(MainActivity.this);
+                alt_bld
+                        .setMessage("종료하시겠습니까?")
+                        .setCancelable(false)
+                        .setPositiveButton("예", new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+                                dialog.cancel();
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("아니오", new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+                                //아니오 버튼
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert = alt_bld.create();
+                alert.show();
+
+
+                break;
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    //메뉴 생성
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.my_option_menu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //메뉴 항목을 선택하면 배경화면 변경 및 현재 선택항목 기록
+        switch(item.getItemId()) {
+            case R.id.item_plus:
+                Intent wintent = new Intent(this,MainActivity.class);
+                startActivity(wintent);
+                return true;
+            case R.id.item_developer:
+                Intent dintent = new Intent(this,SettingsActivity.class);
+                startActivity(dintent);
+                return true;
+            case R.id.item_finish:
+                finish();
+                return true;
+        }
+        return false;
     }
 }

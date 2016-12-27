@@ -50,14 +50,13 @@ public class Fragment1 extends Fragment {
 
 
         //cardview item 추가
-        myDataset.add(new MyData(R.mipmap.ic_launcher,"복부 집중 운동", "1시간 15분",3));
-        myDataset.add(new MyData(R.mipmap.ic_launcher,"복부 근력 운동", "45분",2));
-        myDataset.add(new MyData(R.mipmap.ic_launcher,"옆구리 집중 운동", "1시간 3분",1));
+        myDataset.add(new MyData(R.drawable.q_mark,"랜덤추천", "?",0));
+        myDataset.add(new MyData(R.drawable.a,"복부 근력 운동", "45분",2));
+        myDataset.add(new MyData(R.drawable.b,"옆구리 집중 운동", "1시간 3분",1));
 
 
 
         mRecyclerView.setAdapter(mAdapter);
-
 
 
     }

@@ -1,6 +1,5 @@
 package final_project.mobile.lecture.ma01_20141025.activity;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -21,8 +20,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import final_project.mobile.lecture.ma01_20141025.R;
-import final_project.mobile.lecture.ma01_20141025.activity.dao.MyDBHelper;
 import final_project.mobile.lecture.ma01_20141025.adapter.FinishCustomAdapter;
+import final_project.mobile.lecture.ma01_20141025.dao.MyDBHelper;
 import final_project.mobile.lecture.ma01_20141025.dto.fmyData;
 
 public class FinishCourseActivity extends AppCompatActivity {
@@ -32,7 +31,7 @@ public class FinishCourseActivity extends AppCompatActivity {
     MyDBHelper myDBHelper; //DB접근할 헬퍼 만들기 => onCreate 실행할 때 준비되야함
 
 
-    private ArrayList<fmyData> fmyData;
+    private ArrayList<fmyData> fData;
     private FinishCustomAdapter fcustomAdapter;
     private ListView flistView;
     int updatePosition;
@@ -49,7 +48,7 @@ public class FinishCourseActivity extends AppCompatActivity {
 
         flistView = (ListView)findViewById(R.id.flistView);
         myDBHelper = new MyDBHelper(this);
-        fmyData = new ArrayList<fmyData>();
+        fData = new ArrayList<fmyData>();
 
         tv_courseName = (TextView)findViewById(R.id.tv_courseName);
         tv_courseTime = (TextView)findViewById(R.id.tv_courseTime);
@@ -57,69 +56,69 @@ public class FinishCourseActivity extends AppCompatActivity {
 
         readData();
 
-        fcustomAdapter = new FinishCustomAdapter(this, R.layout.fcustom_view, fmyData);
+        fcustomAdapter = new FinishCustomAdapter(this, R.layout.fcustom_view, fData);
         flistView.setAdapter(fcustomAdapter);
 
 
 
-        flistView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-                //원본데이터와 화면의 배치되는 순서는 정확히 일치하기 때문에 position으로 받을 수 있음.
+//        flistView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+//                //원본데이터와 화면의 배치되는 순서는 정확히 일치하기 때문에 position으로 받을 수 있음.
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(FinishCourseActivity.this);
-
-                builder.setTitle("삭제");
-                builder.setMessage("해당 운동 기록을 정말로 삭제하시겠습니까?");
-                builder.setIcon(R.mipmap.ic_launcher); //대화상자 아이콘
-                builder.setPositiveButton("삭제버튼", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        fmyData currentData = fmyData.get(position);
-                        SQLiteDatabase db = myDBHelper.getWritableDatabase();
-                        String whereClause = "_id=?";
-                        //문자열로 만들어서 String 배열 ( 롱클릭한 아이디 )
-                        String[] whereArgs = new String[] { Integer.valueOf(currentData.get_id()).toString()};
-                        int result = db.delete(MyDBHelper.TABLE_NAME, whereClause, whereArgs);
-
-                        myDBHelper.close();
-
-                        if (result > 0)
-                        {
-                            Toast.makeText(FinishCourseActivity.this, "삭제하지 않습니다 ", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-
-                            fmyData.remove(position);//원본데이터 지움
-                            fcustomAdapter.notifyDataSetChanged();// 데이터 바꼇다고 알려줌
-                            Toast.makeText(FinishCourseActivity.this, "삭제하였습니다.", Toast.LENGTH_SHORT).show();
-                        }
-
-                        //Toast.makeText(ReadPattern.this, "삭제", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                builder.setNegativeButton("취소버튼", null);
-                builder.setCancelable(false);
-
-
-                Dialog dlg = builder.create(); //대화상자 생성, 표시 X
-                dlg.setCanceledOnTouchOutside(false); //대화상자 생성 후에만 설정 할 수 있음.
-                dlg.show();
-
-                //builder.show(); //대화상자 표시
-
-                return true;
-
-            }
-        });
+//                AlertDialog.Builder builder = new AlertDialog.Builder(FinishCourseActivity.this);
+//
+//                builder.setTitle("삭제");
+//                builder.setMessage("해당 운동 기록을 정말로 삭제하시겠습니까?");
+//                builder.setIcon(R.mipmap.ic_launcher); //대화상자 아이콘
+//                builder.setPositiveButton("삭제버튼", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        fmyData currentData = fmyData.get(position);
+//                        SQLiteDatabase db = myDBHelper.getWritableDatabase();
+//                        String whereClause = "_id=?";
+//                        //문자열로 만들어서 String 배열 ( 롱클릭한 아이디 )
+//                        String[] whereArgs = new String[] { Integer.valueOf(currentData.get_id()).toString()};
+//                        int result = db.delete(MyDBHelper.TABLE_NAME, whereClause, whereArgs);
+//
+//                        myDBHelper.close();
+//
+//                        if (result > 0)
+//                        {
+//                            Toast.makeText(FinishCourseActivity.this, "삭제하지 않습니다 ", Toast.LENGTH_SHORT).show();
+//                        }
+//                        else
+//                        {
+//
+//                            fmyData.remove(position);//원본데이터 지움
+//                            fcustomAdapter.notifyDataSetChanged();// 데이터 바꼇다고 알려줌
+//                            Toast.makeText(FinishCourseActivity.this, "삭제하였습니다.", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                        //Toast.makeText(ReadPattern.this, "삭제", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//
+//                builder.setNegativeButton("취소버튼", null);
+//                builder.setCancelable(false);
+//
+//
+//                Dialog dlg = builder.create(); //대화상자 생성, 표시 X
+//                dlg.setCanceledOnTouchOutside(false); //대화상자 생성 후에만 설정 할 수 있음.
+//                dlg.show();
+//
+//                //builder.show(); //대화상자 표시
+//
+//                return true;
+//
+//            }
+//        });
 
         flistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 updatePosition = position;
-                fmyData currentData =fmyData.get(position);
+                fmyData currentData =fData.get(position);
 
                 Toast.makeText(FinishCourseActivity.this ,"OOO운동을 n회 완료하였습니다", Toast.LENGTH_SHORT).show();
 
@@ -135,7 +134,7 @@ public class FinishCourseActivity extends AppCompatActivity {
         if(requestCode == 100){
             switch (resultCode){
                 case RESULT_OK:
-                    fmyData mydata = fmyData.get(updatePosition);//클릭한 내용
+                    fmyData mydata = fData.get(updatePosition);//클릭한 내용
                     fmyData updateData = (fmyData) data.getSerializableExtra("result_data");//바뀐내용
                     mydata.setF_courseName(updateData.getF_courseName());
                     mydata.setF_courseTime(updateData.getF_courseTime());
@@ -154,8 +153,8 @@ public class FinishCourseActivity extends AppCompatActivity {
 
         SQLiteDatabase db = myDBHelper.getReadableDatabase();
 
-        Cursor cursor = db.query(MyDBHelper.TABLE_NAME, null, null, null, null, null, null, null);
-        fmyData.clear(); //추가
+        Cursor cursor = db.query(MyDBHelper.RTABLE_NAME, null, null, null, null, null, null, null);
+        fData.clear(); //추가
         while (cursor.moveToNext()) {
 
             int _id = cursor.getInt(0);
@@ -166,7 +165,7 @@ public class FinishCourseActivity extends AppCompatActivity {
 
             fmyData newItem = new fmyData();
 
-            fmyData.add(newItem);
+            fData.add(newItem);
 
 
         }
